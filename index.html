@@ -7,7 +7,57 @@ hero-text: A collection of presentations I have created, given, or worked on.
 
 {% for presentation in site.data.presentations %}
 
-<div class="media">
+<div class="card mb-5">
+	<div class="card-body">
+		<div class="row">
+			<div class="col-md-4">
+			<img src="{% if presentation.folder == null %}placeholder.png{% else %}{{presentation.folder}}/thumbnail.png{% endif %}" class="card-img" alt="{{event.title}} logo">
+			</div>
+			<div class="col-md-8">
+			<div class="card-body">
+				<h3>{{presentation.title}}</h3>
+				<p>
+					{{presentation.description}}
+				</p>
+				<div class="btn-group btn-group-responsive">
+					{% if presentation.show-view-local %}
+					<a href="{{presentation.folder}}" class="btn btn-primary"><i class="fa fa-eye"></i> View</a>
+					{% endif %}
+		
+					{% if presentation.show-view-remote %}
+					<a href="{{presentation.view-remote-url}}" class="btn {% if presentation.show-view-local %}btn-default{% else %}btn-primary{% endif %}"><i class="fa fa-eye"></i> {{presentation.view-remote-text}}</a>
+					{% endif %}
+		
+					{% if presentation.show-source %}
+					<a href="{{presentation.source-url}}" class="btn btn-secondary"><i class="fa fa-github" aria-hidden="true"></i> {{presentation.source-text}}</a>
+					{% endif %}
+				</div>
+			</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- <a href="{{event.url}}" class="link-unstyled">
+	<div class="card mb-5">
+		<div class="row">
+			<div class="col-md-4">
+			<img src="{{event.ctf}}/attachments/icon.png" class="card-img" alt="{{event.title}} logo">
+			</div>
+			<div class="col-md-8">
+			<div class="card-body">
+				<h2 class="card-title">{{event.title}}</h5>
+				<p class="card-text">{{event.ctf-description}}</p>
+			</div>
+			</div>
+		</div>
+	</div>
+</a> -->
+	
+
+
+
+<!-- <div class="media">
 	<div class="media-left">
 		<img src="{% if presentation.folder == null %}placeholder.png{% else %}{{presentation.folder}}/thumbnail.png{% endif %}" class="media-object">
 	</div>
@@ -26,10 +76,10 @@ hero-text: A collection of presentations I have created, given, or worked on.
 			{% endif %}
 
 			{% if presentation.show-source %}
-			<a href="{{presentation.source-url}}" class="btn btn-default"><i class="fa fa-github" aria-hidden="true"></i> {{presentation.source-text}}</a>
+			<a href="{{presentation.source-url}}" class="btn btn-secondary"><i class="fa fa-github" aria-hidden="true"></i> {{presentation.source-text}}</a>
 			{% endif %}
 		</div>
 	</div>
-</div>
+</div> -->
 
 {% endfor %}
